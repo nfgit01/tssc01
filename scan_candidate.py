@@ -74,8 +74,13 @@ class PortScanOutput:
         self._set_result(result)
 
     def _set_result(self, result):
-        if not type(result) == bool:
-            raise Exception("Input Type Error. %s(<result>) must be bool." % (result))
+        candidate = ["open", "close", "error"]
+        if not type(result) == str:
+            raise Exception("Input Type Error. %s(<result>) must be str" % (result))
+        elif not result in candidate:
+            raise Exception("Input Type Error. %s(<result>) must be %s" %
+                            (result, " or ".candidate))
+        self._result = result
 
     @property
     def desc(self):
@@ -122,10 +127,11 @@ class PasswordScanInput:
         self._set_proto(proto)
 
     def _set_proto(self, proto):
+        candidate = ["ssh", "rdp"]
         if not type(proto) == str:
             raise Exception("Input Type Error. %s(<proto>) must be String." % (proto))
-        elif not proto == "ssh" or proto == "rdp":
-            raise Exception("Input Type Error. %s(<proto>) must be ssh/rdp." % (proto))
+        elif not proto in candidate:
+            raise Exception("Input Type Error. %s(<proto>) must be %s." % (proto, " or ".join(candidate)))
 
         self._proto = proto
 
@@ -186,8 +192,13 @@ class PasswordScanOutput:
         self._set_result(result)
 
     def _set_result(self, result):
-        if not type(result) == bool:
-            raise Exception("Input Type Error. %s(<result>) must be bool." % (result))
+        candidate = ["open", "close", "error"]
+        if not type(result) == str:
+            raise Exception("Input Type Error. %s(<result>) must be str" % (result))
+        elif not result in candidate:
+            raise Exception("Input Type Error. %s(<result>) must be %s" %
+                            (result, " or ".candidate))
+        self._result = result
 
     @property
     def desc(self):
@@ -231,7 +242,7 @@ class SMTPScanInput:
         self._set_mailaddr(mailaddr)
 
     def _set_mailaddr(self, mailaddr):
-        if not type(proto) == str:
+        if not type(mailaddr) == str:
             raise Exception("Input Type Error. %s(<mailaddr>) must be String." % (mailadd))
 
         self._mailaddr = mailaddr
@@ -265,8 +276,13 @@ class SMTPScanOutput:
         self._set_result(result)
 
     def _set_result(self, result):
-        if not type(result) == bool:
-            raise Exception("Input Type Error. %s(<result>) must be bool." % (result))
+        candidate = ["open", "close", "error"]
+        if not type(result) == str:
+            raise Exception("Input Type Error. %s(<result>) must be str" % (result))
+        elif not result in candidate:
+            raise Exception("Input Type Error. %s(<result>) must be %s" %
+                            (result, " or ".candidate))
+        self._result = result
 
     @property
     def desc(self):
