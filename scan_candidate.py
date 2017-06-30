@@ -38,9 +38,9 @@ class PortScanInput:
         self._set_port(self, port)
 
     def _set_port(self, port):
-        if not type(port) == int:
-            raise Exception("Input Type Error. %s(<port>) must be integer." % port)
-        elif not (0 < port and port <= 256*256):
+        if not type(port) == str:
+            raise Exception("Input Type Error. %s(<port>) must be String." % port)
+        elif not (0 < int(port) and int(port) <= 256*256):
             raise Exception("Input Type Error. %s(<port>) must be 0 < port <= 65536" % port)
 
         self._port = port
@@ -93,7 +93,7 @@ class PortScanOutput:
     def _set_desc(self, desc):
         if not type(desc) == str:
             raise Exception("Input Type Error. %s(<desc>) must be String." % (desc))
-
+        self._desc = desc
 
 class PasswordScanInput:
     def __init__(self, addr, proto, account, password):
